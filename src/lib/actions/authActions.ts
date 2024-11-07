@@ -24,6 +24,14 @@ export async function handleCredentialsSignIn(email: string, password: string) {
   }
 }
 
+export async function handleGithubSignIn() {
+  await signIn('github', { redirectTo: '/' });
+}
+
+export async function handleGoogleSignIn() {
+  // await signIn('google', { redirectTo: '/' });
+}
+
 export async function handleSignOut() {
   await signOut();
 }

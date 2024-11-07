@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { handleCredentialsSignIn } from '@/lib/actions/authActions';
+import { handleCredentialsSignIn, handleGithubSignIn, handleGoogleSignIn } from '@/lib/actions/authActions';
 import { signInSchema } from '@/lib/schema/authSchema';
 
 type SignInFormData = z.infer<typeof signInSchema>;
@@ -90,6 +90,18 @@ export default function SignInForm() {
             className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed'
           >
             {isSubmitting ? 'Signing in...' : 'Sign In'}
+          </button>
+        </form>
+        <form
+          action={async () => {
+            await handleGoogleSignIn();
+          }}
+        >
+          <button
+            className='mt-5 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed'
+            type='button'
+          >
+            Sign In with Github
           </button>
         </form>
       </div>
